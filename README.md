@@ -3,8 +3,22 @@ Template for projects
 
 Features
 --------
-- Some feature
-- A feature, and maybe more to come
+[ ] Sidebar with All Projects, Today, and each individual project
+[ ] New project button to add project to sidebar
+[ ] Main content with title like "today", "tomorrow", "week"
+[ ] Bare minimum CSS to make the page display things properly
+[ ] Tasks that display under titles
+[ ] Tasks that contain title, description, due date, and priority
+[ ] Ability to edit tasks on the page
+[ ] Ability to delete tasks on the page
+[ ] Expand tasks upon clicking for more information
+[ ] CSS to make the page look good
+[ ] Sorting by due date
+[ ] Sorting by priority
+[ ] Checkboxes for tasks
+[ ] Date library date-fns for date formatting
+[ ] localStorage to save data on a computer
+[ ] Error handling if data isn't in localStorage
 
 
 How to use this project
