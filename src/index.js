@@ -8,7 +8,7 @@ class Project {
     }
 
     addTask(title, desc, dueDate, prio) {
-        this.tasks.push(Task(title, desc, dueDate, prio));
+        this.tasks.push(new Task(title, desc, dueDate, prio));
     }
 };
 
@@ -26,4 +26,14 @@ const projects = [];
 projects.push(new Project("i am projec"));
 projects.push(new Project("i am projec"));
 projects.push(new Project("i am projec"));
+
+projects[0].addTask("Lock in", "Do some work", "2025-07-22", "high");
+projects[0].addTask("Lock in", "Do some work", "2025-07-22", "high");
+projects[0].addTask("Lock in", "Do some work", "2025-07-22", "high");
+projects[1].addTask("Lock in", "Do some work", "2025-07-22", "high");
+projects[1].addTask("Lock in", "Do some work", "2025-07-22", "high");
+projects[2].addTask("Lock in", "Do some work", "2025-07-22", "high");
+projects[2].addTask("Lock in", "Do some work", "2025-07-22", "high");
+projects[2].addTask("Lock in", "Do some work", "2025-07-22", "high");
+
 dom.updateSidebar(projects);

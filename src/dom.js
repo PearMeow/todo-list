@@ -17,7 +17,8 @@ export function updateContent(project) {
     for (let i = 0; i < project.tasks.length; ++i) {
         const task = project.tasks[i];
         const domTask = document.createElement("p");
-        domTask.textContent = task.title + " " + task.desc + " " + task.dueDate + " " + task.prio;
+        domTask.textContent = "Title: " + task.title + " Desc: " + task.desc +
+            " Due: " + task.dueDate + " Priority: " + task.prio;
         newContent.appendChild(domTask);
     }
     content.replaceChildren();
