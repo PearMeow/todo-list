@@ -1,10 +1,10 @@
 export function updateSidebar(projects) {
     const sidebar = document.querySelector(".sidebar");
     const domProjects = document.createElement("div");
-    for (let i = 0; i < projects.length; ++i) {
+    for (const proj of projects) {
         const projBtn = document.createElement("button");
-        projBtn.textContent = projects.name;
-        projBtn.addEventListener("click", () => updateContent(projects[i]));
+        projBtn.textContent = proj.name;
+        projBtn.addEventListener("click", () => updateContent(proj));
         domProjects.appendChild(projBtn);
     }
     sidebar.replaceChildren();

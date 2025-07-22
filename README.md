@@ -3,7 +3,8 @@ Template for projects
 
 Features
 --------
-- [ ] Sidebar with All Projects, Today, and each individual project
+- [x] Sidebar with individual projects
+- [ ] Sidebar with all projects or today or this week
 - [ ] New project button to add project to sidebar
 - [ ] Main content with title like "today", "tomorrow", "week"
 - [ ] Bare minimum CSS to make the page display things properly

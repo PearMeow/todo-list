@@ -1,8 +1,6 @@
 console.log("This is some template text");
 import * as dom from "./dom.js";
 
-const projects = [];
-
 class Project {
     constructor(name) {
         this.name = name;
@@ -22,3 +20,10 @@ class Task {
         this.prio = prio;
     }
 }
+
+const projects = [];
+
+projects.push(new Project("i am projec"));
+projects.push(new Project("i am projec"));
+projects.push(new Project("i am projec"));
+dom.updateSidebar(projects);
