@@ -1,10 +1,5 @@
 console.log("This is some template text");
-
-// sidebar first
-// what do we want to store the projects in?
-// array probably
-// Array that contains each project
-// Project object that contains an array of todos
+import * as dom from "./dom.js";
 
 const projects = [];
 
@@ -27,5 +22,3 @@ class Task {
         this.prio = prio;
     }
 }
-
-
