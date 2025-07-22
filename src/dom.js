@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 export function updateSidebar(projects) {
     const sidebar = document.querySelector(".sidebar");
     const domProjects = document.createElement("div");
@@ -18,7 +20,7 @@ export function updateContent(project) {
         const task = project.tasks[i];
         const domTask = document.createElement("p");
         domTask.textContent = "Title: " + task.title + " Desc: " + task.desc +
-            " Due: " + task.dueDate + " Priority: " + task.prio;
+            " Due: " + format(task.dueDate, "yyyy/MM/dd") + " Priority: " + task.prio;
         newContent.appendChild(domTask);
     }
     content.replaceChildren();
