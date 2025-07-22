@@ -7,9 +7,22 @@
 body {
     display: grid;
     grid-template-columns: 1fr 4fr;
+    gap: 20px;
 }
 
-.sidebar {
+p {
+    margin: 0;
+}
+
+.sidebar>div {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.content>div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
