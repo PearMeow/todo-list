@@ -4,10 +4,10 @@ Template for projects
 Features
 --------
 - [x] Sidebar with individual projects
+- [x] Bare minimum CSS to make the page display things properly
 - [ ] Sidebar with all projects or today or this week
 - [ ] New project button to add project to sidebar
 - [ ] Main content with title like "today", "tomorrow", "week"
-- [ ] Bare minimum CSS to make the page display things properly
 - [ ] Tasks that display under titles
 - [ ] Tasks that contain title, description, due date, and priority
 - [ ] Ability to edit tasks on the page

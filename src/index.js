@@ -1,5 +1,6 @@
 console.log("This is some template text");
 import * as dom from "./dom.js";
+import "./style.css"
 
 class Project {
     constructor(name) {
