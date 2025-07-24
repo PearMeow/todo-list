@@ -21,7 +21,6 @@ Features
 - [ ] localStorage to save data on a computer
 - [ ] Error handling if data isn't in localStorage
 
-
 How to use this project
 -----------------------
 Visit the live version <a href="" rel="noopener noreferrer">here</a>! Or clone the repo and run `npx webpack serve` in the project's root directory. (or if the project is just static, open index.html on your favorite browser!)
