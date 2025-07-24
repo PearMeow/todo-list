@@ -58,16 +58,20 @@ function showAll(projectList) {
         const title = document.createElement("p");
         title.textContent = proj.name;
         newContent.appendChild(title);
-        for (let i = 0; i < proj.tasks.length; ++i) {
-            const task = proj.tasks[i];
-            const domTask = document.createElement("p");
-            domTask.textContent = "Title: " + task.title + " Desc: " + task.desc +
-                " Due: " + format(task.dueDate, "yyyy/MM/dd") + " Priority: " + task.prio;
-            newContent.appendChild(domTask);
-        }
+        addTasks(newContent, proj);
     }
     content.replaceChildren();
     content.appendChild(newContent);
+}
+
+function addTasks(domParent, proj) {
+    for (let i = 0; i < proj.tasks.length; ++i) {
+        const task = proj.tasks[i];
+        const domTask = document.createElement("p");
+        domTask.textContent = "Title: " + task.title + " Desc: " + task.desc +
+            " Due: " + format(task.dueDate, "yyyy/MM/dd") + " Priority: " + task.prio;
+        domParent.appendChild(domTask);
+    }
 }
 
 export function updateContent(project) {
@@ -76,13 +80,7 @@ export function updateContent(project) {
     const title = document.createElement("p");
     title.textContent = project.name;
     newContent.appendChild(title);
-    for (let i = 0; i < project.tasks.length; ++i) {
-        const task = project.tasks[i];
-        const domTask = document.createElement("p");
-        domTask.textContent = "Title: " + task.title + " Desc: " + task.desc +
-            " Due: " + format(task.dueDate, "yyyy/MM/dd") + " Priority: " + task.prio;
-        newContent.appendChild(domTask);
-    }
+    addTasks(newContent, project);
     content.replaceChildren();
     content.appendChild(newContent);
 }
