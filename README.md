@@ -1,5 +1,5 @@
-<h1 align="center">Template</h1>
-Template for projects
+<h1 align="center">To Do List</h1>
+To Do List for TOP
 
 Features
 --------
