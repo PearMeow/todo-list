@@ -31,7 +31,7 @@ function createAddModal(projectList) {
     const submitBtn = document.createElement("button");
     form.setAttribute("action", "");
     form.setAttribute("method", "dialog");
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", () => {
         const data = new FormData(form);
         projectList.addProject(data.get("projName"));
         updateSidebar(projectList);
@@ -67,10 +67,27 @@ function showAll(projectList) {
 function addTasks(domParent, proj) {
     for (let i = 0; i < proj.tasks.length; ++i) {
         const task = proj.tasks[i];
-        const domTask = document.createElement("p");
-        domTask.textContent = "Title: " + task.title + " Desc: " + task.desc +
-            " Due: " + format(task.dueDate, "yyyy/MM/dd") + " Priority: " + task.prio;
-        domParent.appendChild(domTask);
+        const expandableTask = document.createElement("div");
+        const showBtn = document.createElement("button");
+        const taskTitle = document.createElement("p");
+        const details = document.createElement("p");
+        showBtn.textContent = ">";
+        showBtn.classList.add("showBtn");
+        taskTitle.classList.add("taskTitle");
+        showBtn.addEventListener("click", () => {
+            if (showBtn.textContent === ">") {
+                showBtn.textContent = "<";
+                expandableTask.appendChild(details);
+            } else {
+                showBtn.textContent = ">";
+                expandableTask.removeChild(details);
+            }
+        });
+        taskTitle.textContent = task.title;
+        details.textContent = " Desc: " + task.desc + " Due: " + format(task.dueDate, "yyyy/MM/dd") + " Priority: " + task.prio;
+        expandableTask.appendChild(showBtn);
+        expandableTask.appendChild(taskTitle);
+        domParent.appendChild(expandableTask);
     }
 }
 

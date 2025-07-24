@@ -26,3 +26,11 @@ p {
     flex-direction: column;
     gap: 10px;
 }
+
+.showBtn {
+    margin: 0 10px 0 0;
+}
+
+.taskTitle {
+    display: inline;
+}
