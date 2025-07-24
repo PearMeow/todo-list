@@ -34,9 +34,9 @@ class Task {
 
 const projectList = new ProjectList();
 
-projectList.addProject("i am projec");
-projectList.addProject("i am projec");
-projectList.addProject("i am projec");
+projectList.addProject("Chores");
+projectList.addProject("Homework");
+projectList.addProject("Projects");
 
 projectList.projects[0].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
 projectList.projects[1].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
