@@ -1,7 +1,16 @@
 console.log("This is some template text");
 import * as dom from "./dom.js";
 import "./style.css"
-import { format } from "date-fns";
+
+class ProjectList {
+    constructor() {
+        this.projects = [];
+    }
+
+    addProject(name) {
+        this.projects.push(new Project(name));
+    }
+}
 
 class Project {
     constructor(name) {
@@ -23,19 +32,17 @@ class Task {
     }
 }
 
-const projects = [];
+const projectList = new ProjectList();
 
-projects.push(new Project("i am projec"));
-projects.push(new Project("i am projec"));
-projects.push(new Project("i am projec"));
+projectList.addProject("i am projec");
+projectList.addProject("i am projec");
+projectList.addProject("i am projec");
 
-projects[0].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
-projects[0].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
-projects[0].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
-projects[1].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
-projects[1].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
-projects[1].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
-projects[1].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
-projects[2].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
+projectList.projects[0].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
+projectList.projects[1].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
+projectList.projects[1].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
+projectList.projects[2].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
+projectList.projects[2].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
+projectList.projects[2].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
 
-dom.updateSidebar(projects);
+dom.updateSidebar(projectList);
