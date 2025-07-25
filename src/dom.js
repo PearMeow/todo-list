@@ -5,7 +5,7 @@ export function updateSidebar(projectList) {
     const domProjects = document.createElement("div");
     const allBtn = document.createElement("button");
     const addBtn = document.createElement("button");
-    const addModal = createAddModal(projectList);
+    const addDialog = createAddDialog(projectList);
     allBtn.textContent = "All Projects";
     allBtn.addEventListener("click", () => showAll(projectList));
     domProjects.appendChild(allBtn);
@@ -15,16 +15,16 @@ export function updateSidebar(projectList) {
         projBtn.addEventListener("click", () => updateContent(proj));
         domProjects.appendChild(projBtn);
     }
-    addBtn.addEventListener("click", () => addModal.showModal());
+    addBtn.addEventListener("click", () => addDialog.showModal());
     addBtn.textContent = "Add Project";
     domProjects.appendChild(addBtn);
-    domProjects.appendChild(addModal);
+    domProjects.appendChild(addDialog);
     sidebar.replaceChildren();
     sidebar.appendChild(domProjects);
 }
 
-function createAddModal(projectList) {
-    const addModal = document.createElement("dialog");
+function createAddDialog(projectList) {
+    const addDialog = document.createElement("dialog");
     const form = document.createElement("form");
     const inputLabel = document.createElement("label");
     const input = document.createElement("input");
@@ -43,12 +43,12 @@ function createAddModal(projectList) {
     inputLabel.textContent = "Project Name";
     submitBtn.textContent = "Add Project";
     submitBtn.setAttribute("type", "submit");
-    addModal.classList.add("addModal");
+    addDialog.classList.add("addDialog");
     form.appendChild(inputLabel);
     form.appendChild(input);
     form.appendChild(submitBtn);
-    addModal.appendChild(form);
-    return addModal;
+    addDialog.appendChild(form);
+    return addDialog;
 }
 
 function showAll(projectList) {
@@ -169,6 +169,20 @@ function displayTasks(domParent, proj) {
         expandableTask.appendChild(details);
         domParent.appendChild(expandableTask);
     }
+    const addBtn = document.createElement("button");
+    const addTaskDialog = createAddTaskDialog(proj);
+    addBtn.textContent = "Add Task";
+    addBtn.addEventListener("click", () => {
+        addTaskDialog.showModal();
+    })
+    domParent.appendChild(addBtn);
+    domParent.appendChild(addTaskDialog);
+}
+
+function createAddTaskDialog(proj) {
+    const addTaskDialog = document.createElement("dialog");
+
+    return addTaskDialog;
 }
 
 export function updateContent(project) {
