@@ -18,8 +18,8 @@ Features
 - [ ] localStorage to save data on a computer
 - [ ] Error handling if data isn't in localStorage
 - [ ] CSS to make the page look good
-- ~~[ ] Sorting by due date~~
-- ~~[ ] Sorting by priority~~
+- [ ] ~~Sorting by due date~~
+- [ ] ~~Sorting by priority~~
 
 How to use this project
 -----------------------
