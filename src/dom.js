@@ -69,36 +69,48 @@ function addTasks(domParent, proj) {
         const task = proj.tasks[i];
         const expandableTask = document.createElement("div");
         const showBtn = document.createElement("button");
-        const taskTitle = document.createElement("p");
-        const desc = document.createElement("p");
-        const dueDate = document.createElement("p");
-        const prio = document.createElement("p");
+        const taskTitle = document.createElement("input");
+        const desc = document.createElement("input");
+        const dueDate = document.createElement("input");
+        const prio = document.createElement("input");
 
         showBtn.textContent = ">";
         showBtn.classList.add("showBtn");
         taskTitle.classList.add("taskTitle");
-        taskTitle.textContent = task.title;
-        desc.textContent = task.desc
-        dueDate.textContent = "Due " + format(task.dueDate, "yyyy/MM/dd")
-        prio.textContent = task.prio + " priority";
+        taskTitle.value = task.title;
+        desc.value = task.desc
+        dueDate.value = "Due " + format(task.dueDate, "yyyy/MM/dd")
+        prio.value = task.prio + " priority";
+        desc.style.display = "none";
+        dueDate.style.display = "none";
+        prio.style.display = "none";
         showBtn.addEventListener("click", () => {
             if (showBtn.textContent === ">") {
                 showBtn.textContent = "<";
-                expandableTask.appendChild(desc);
-                expandableTask.appendChild(dueDate);
-                expandableTask.appendChild(prio);
+                desc.style.display = "block";
+                dueDate.style.display = "block";
+                prio.style.display = "block";
             } else {
                 showBtn.textContent = ">";
-                expandableTask.removeChild(desc);
-                expandableTask.removeChild(dueDate);
-                expandableTask.removeChild(prio);
+                desc.style.display = "none";
+                dueDate.style.display = "none";
+                prio.style.display = "none";
             }
         });
         expandableTask.appendChild(showBtn);
         expandableTask.appendChild(taskTitle);
+        expandableTask.appendChild(desc);
+        expandableTask.appendChild(dueDate);
+        expandableTask.appendChild(prio);
         domParent.appendChild(expandableTask);
     }
 }
+
+// function editTask(input) {
+//     input.addEventListener("input", (event) => {
+//         input.value = event.target.value;
+//     })
+// }
 
 export function updateContent(project) {
     const content = document.querySelector(".content");
