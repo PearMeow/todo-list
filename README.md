@@ -13,7 +13,7 @@ Features
 - [x] Ability to edit tasks on the page
 - [x] Ability to add tasks on the page
 - [x] Ability to delete tasks on the page
-- [ ] Checkboxes for tasks
+- [x] Checkboxes for tasks
 - [ ] localStorage to save data on a computer
 - [ ] Error handling if data isn't in localStorage
 - [ ] CSS to make the page look good

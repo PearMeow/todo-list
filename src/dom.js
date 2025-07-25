@@ -81,9 +81,10 @@ function displayTasks(domParent, proj) {
 
 function taskToDomElem(task, taskList, proj) {
     const expandableTask = document.createElement("div");
-    const showBtn = document.createElement("button");
+    const checkbox = document.createElement("input");
     const taskTitle = document.createElement("input");
     const taskTitleLabel = document.createElement("label");
+    const showBtn = document.createElement("button");
     const details = document.createElement("div");
     const desc = document.createElement("input");
     const descLabel = document.createElement("label")
@@ -95,6 +96,15 @@ function taskToDomElem(task, taskList, proj) {
     const optMed = document.createElement("option");
     const optLow = document.createElement("option");
     const delBtn = document.createElement("button");
+
+    checkbox.setAttribute("type", "checkbox");
+    checkbox.setAttribute("name", "completed");
+    if (task.completed === true) {
+        checkbox.setAttribute("checked", "");
+    }
+    checkbox.addEventListener("input", () => {
+        task.completed = !task.completed;
+    })
 
     taskTitleLabel.textContent = "Task "
     taskTitle.value = task.title;
@@ -173,6 +183,7 @@ function taskToDomElem(task, taskList, proj) {
     descLabel.appendChild(desc);
     dueDateLabel.appendChild(dueDate);
     prioLabel.appendChild(prio);
+    expandableTask.appendChild(checkbox);
     expandableTask.appendChild(taskTitleLabel);
     expandableTask.appendChild(showBtn);
     expandableTask.appendChild(delBtn);
