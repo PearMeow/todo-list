@@ -5,7 +5,7 @@ export function updateSidebar(projectList) {
     const domProjects = document.createElement("div");
     const allBtn = document.createElement("button");
     const addBtn = document.createElement("button");
-    const addDialog = createAddDialog(projectList);
+    const addDialog = createAddProjDialog(projectList);
     allBtn.textContent = "All Projects";
     allBtn.addEventListener("click", () => showAll(projectList));
     domProjects.appendChild(allBtn);
@@ -23,7 +23,7 @@ export function updateSidebar(projectList) {
     sidebar.appendChild(domProjects);
 }
 
-function createAddDialog(projectList) {
+function createAddProjDialog(projectList) {
     const addDialog = document.createElement("dialog");
     const form = document.createElement("form");
     const inputLabel = document.createElement("label");
@@ -215,13 +215,16 @@ function createAddTaskDialog(proj, taskList) {
 
     titleLabel.textContent = "Task Title ";
     titleInput.setAttribute("name", "title");
+    titleInput.setAttribute("required", "");
 
     descLabel.textContent = "Description ";
     descInput.setAttribute("name", "desc");
+    descInput.setAttribute("required", "");
 
     dueDateLabel.textContent = "Task Title ";
     dueDateInput.setAttribute("name", "dueDate");
     dueDateInput.setAttribute("type", "date");
+    dueDateInput.setAttribute("required", "");
 
     prioLabel.textContent = "Priority ";
     prioSelect.setAttribute("name", "prio");
