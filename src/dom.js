@@ -67,7 +67,7 @@ function showAll(projectList) {
 function displayTasks(domParent, proj) {
     const taskList = document.createElement("div");
     for (let i = 0; i < proj.tasks.length; ++i) {
-        const expandableTask = taskToDomElem(proj.tasks[i], taskList);
+        const expandableTask = taskToDomElem(proj.tasks[i], taskList, proj);
         taskList.appendChild(expandableTask);
     }
     const addBtn = document.createElement("button");
@@ -81,7 +81,7 @@ function displayTasks(domParent, proj) {
     domParent.appendChild(addTaskDialog);
 }
 
-function taskToDomElem(task, taskList) {
+function taskToDomElem(task, taskList, proj) {
     const expandableTask = document.createElement("div");
     const showBtn = document.createElement("button");
     const taskTitle = document.createElement("input");
@@ -197,7 +197,7 @@ function createAddTaskDialog(proj, taskList) {
         const dueDate = data.get("dueDate");
         const prio = data.get("prio");
         proj.addTask(title, desc, dueDate, prio);
-        const expandableTask = taskToDomElem(proj.tasks[proj.tasks.length - 1], taskList);
+        const expandableTask = taskToDomElem(proj.tasks[proj.tasks.length - 1], taskList, proj);
         taskList.appendChild(expandableTask);
     })
     const titleLabel = document.createElement("label");
