@@ -81,9 +81,6 @@ function addTasks(domParent, proj) {
         const optMed = document.createElement("option");
         const optLow = document.createElement("option");
 
-        showBtn.textContent = ">";
-        showBtn.classList.add("showBtn");
-
         taskTitleLabel.textContent = "Task "
         taskTitle.value = task.title;
         taskTitle.addEventListener("change", (event) => {
@@ -134,14 +131,17 @@ function addTasks(domParent, proj) {
         descLabel.style.display = "none";
         dueDateLabel.style.display = "none";
         prioLabel.style.display = "none";
+
+        showBtn.textContent = "+";
+        showBtn.classList.add("showBtn");
         showBtn.addEventListener("click", () => {
-            if (showBtn.textContent === ">") {
-                showBtn.textContent = "<";
+            if (showBtn.textContent === "+") {
+                showBtn.textContent = "-";
                 descLabel.style.display = "block";
                 dueDateLabel.style.display = "block";
                 prioLabel.style.display = "block";
             } else {
-                showBtn.textContent = ">";
+                showBtn.textContent = "+";
                 descLabel.style.display = "none";
                 dueDateLabel.style.display = "none";
                 prioLabel.style.display = "none";
@@ -152,8 +152,8 @@ function addTasks(domParent, proj) {
         descLabel.appendChild(desc);
         dueDateLabel.appendChild(dueDate);
         prioLabel.appendChild(prio);
-        expandableTask.appendChild(showBtn);
         expandableTask.appendChild(taskTitleLabel);
+        expandableTask.appendChild(showBtn);
         expandableTask.appendChild(descLabel);
         expandableTask.appendChild(dueDateLabel);
         expandableTask.appendChild(prioLabel);
