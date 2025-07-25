@@ -58,13 +58,13 @@ function showAll(projectList) {
         const title = document.createElement("p");
         title.textContent = proj.name;
         newContent.appendChild(title);
-        addTasks(newContent, proj);
+        displayTasks(newContent, proj);
     }
     content.replaceChildren();
     content.appendChild(newContent);
 }
 
-function addTasks(domParent, proj) {
+function displayTasks(domParent, proj) {
     for (let i = 0; i < proj.tasks.length; ++i) {
         const task = proj.tasks[i];
         const expandableTask = document.createElement("div");
@@ -168,7 +168,7 @@ export function updateContent(project) {
     const title = document.createElement("p");
     title.textContent = project.name;
     newContent.appendChild(title);
-    addTasks(newContent, project);
+    displayTasks(newContent, project);
     content.replaceChildren();
     content.appendChild(newContent);
 }
