@@ -171,11 +171,7 @@ function taskToDomElem(task, taskList, proj) {
 
     delBtn.textContent = "Delete Task";
     delBtn.addEventListener("click", () => {
-        for (let i = 0; i < proj.tasks.length; ++i) {
-            if (proj.tasks[i].id === task.id) {
-                proj.tasks.splice(i, 1);
-            }
-        }
+        proj.removeTask(task.id);
         taskList.removeChild(expandableTask);
     });
 

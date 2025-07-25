@@ -8,6 +8,7 @@ class ProjectList {
 
     addProject(name) {
         this.projects.push(new Project(name));
+        storage.setItem("projectList", JSON.stringify(projectList));
     }
 }
 
@@ -17,19 +18,68 @@ class Project {
         this.tasks = [];
     }
 
-    addTask(title, desc, dueDate, prio) {
-        this.tasks.push(new Task(title, desc, dueDate, prio));
+    addTask(title, desc, dueDate, prio, completed = false, id = null) {
+        this.tasks.push(new Task(title, desc, dueDate, prio, completed, id));
+        storage.setItem("projectList", JSON.stringify(projectList));
+    }
+
+    removeTask(id) {
+        for (let i = 0; i < this.tasks.length; ++i) {
+            if (this.tasks[i].id === id) {
+                this.tasks.splice(i, 1);
+            }
+        }
+        storage.setItem("projectList", JSON.stringify(projectList));
     }
 };
 
 class Task {
-    constructor(title, desc, dueDate, prio) {
-        this.title = title;
-        this.desc = desc;
-        this.dueDate = dueDate;
-        this.prio = prio;
-        this.completed = false;
-        this.id = crypto.randomUUID();
+    constructor(title, desc, dueDate, prio, completed = false, id = null) {
+        this._title = title;
+        this._desc = desc;
+        this._dueDate = dueDate;
+        this._prio = prio;
+        this._completed = completed;
+        if (id === null) {
+            this.id = crypto.randomUUID();
+        } else {
+            this.id = id;
+        }
+    }
+    get title() {
+        return this._title;
+    }
+    get desc() {
+        return this._desc;
+    }
+    get dueDate() {
+        return this._dueDate;
+    }
+    get prio() {
+        return this._prio;
+    }
+    get completed() {
+        return this._completed;
+    }
+    set title(newTitle) {
+        this._title = newTitle;
+        storage.setItem("projectList", JSON.stringify(projectList));
+    }
+    set desc(newDesc) {
+        this._desc = newDesc;
+        storage.setItem("projectList", JSON.stringify(projectList));
+    }
+    set dueDate(newDueDate) {
+        this._dueDate = newDueDate;
+        storage.setItem("projectList", JSON.stringify(projectList));
+    }
+    set prio(newPrio) {
+        this._prio = newPrio;
+        storage.setItem("projectList", JSON.stringify(projectList));
+    }
+    set completed(newCompleted) {
+        this._completed = newCompleted;
+        storage.setItem("projectList", JSON.stringify(projectList));
     }
 }
 
@@ -52,26 +102,29 @@ function storageAvailable(type) {
     }
 }
 
+let storage = null;
+
 if (storageAvailable("localStorage")) {
     console.log("Local storage available");
+    storage = window["localStorage"];
 } else {
     console.log("Local storage unavailable");
 }
 
 const projectList = new ProjectList();
-
-projectList.addProject("Chores");
-projectList.addProject("Homework");
-projectList.addProject("Projects");
-
-projectList.projects[0].addTask("Lock in", "Do some work", "2025-07-22", "High");
-projectList.projects[1].addTask("Lock in", "Do some work", "2025-07-22", "High");
-projectList.projects[1].addTask("Lock in", "Do some work", "2025-07-22", "High");
-projectList.projects[2].addTask("Lock in", "Do some work", "2025-07-22", "High");
-projectList.projects[2].addTask("Lock in", "Do some work", "2025-07-22", "High");
-projectList.projects[2].addTask("Lock in", "Do some work", "2025-07-22", "High");
+if (storage !== null && storage.getItem("projectList") !== null) {
+    console.log(storage.getItem("projectList"));
+    const storageProjList = JSON.parse(storage.getItem("projectList"));
+    for (const project of storageProjList.projects) {
+        projectList.addProject(project.name);
+        const currProj = projectList.projects[projectList.projects.length - 1];
+        for (const task of project.tasks) {
+            currProj.addTask(task._title, task._desc, task._dueDate, task._prio, task._completed, task.id);
+        }
+    }
+}
 
 dom.updateSidebar(projectList);
 dom.showAll(projectList);
 
-console.log(JSON.stringify(projectList));
+storage.setItem("projectList", JSON.stringify(projectList));
