@@ -70,47 +70,97 @@ function addTasks(domParent, proj) {
         const expandableTask = document.createElement("div");
         const showBtn = document.createElement("button");
         const taskTitle = document.createElement("input");
+        const taskTitleLabel = document.createElement("label");
         const desc = document.createElement("input");
+        const descLabel = document.createElement("label")
         const dueDate = document.createElement("input");
-        const prio = document.createElement("input");
+        const dueDateLabel = document.createElement("label");
+        const prio = document.createElement("select");
+        const prioLabel = document.createElement("label");
+        const optHigh = document.createElement("option");
+        const optMed = document.createElement("option");
+        const optLow = document.createElement("option");
 
         showBtn.textContent = ">";
         showBtn.classList.add("showBtn");
-        taskTitle.classList.add("taskTitle");
+
+        taskTitleLabel.textContent = "Task "
         taskTitle.value = task.title;
+        taskTitle.addEventListener("change", (event) => {
+            if (event.target.value.length > 0) {
+                task.title = event.target.value;
+            } else {
+                taskTitle.value = task.title;
+            }
+        })
+
+        descLabel.textContent = "Description ";
         desc.value = task.desc
-        dueDate.value = "Due " + format(task.dueDate, "yyyy/MM/dd")
-        prio.value = task.prio + " priority";
-        desc.style.display = "none";
-        dueDate.style.display = "none";
-        prio.style.display = "none";
+        desc.addEventListener("change", (event) => {
+            if (event.target.value.length > 0) {
+                task.desc = event.target.value;
+            }
+        })
+
+        dueDateLabel.textContent = "Due ";
+        dueDate.setAttribute("type", "date");
+        dueDate.value = task.dueDate;
+        dueDate.addEventListener("input", (event) => {
+            task.dueDate = event.target.value;
+            console.log(task.dueDate);
+        })
+
+        prioLabel.textContent = "Priority ";
+        optHigh.textContent = "High";
+        optMed.textContent = "Med";
+        optLow.textContent = "Low";
+        optHigh.setAttribute("value", "High")
+        optMed.setAttribute("value", "Med")
+        optLow.setAttribute("value", "Low")
+        if (task.prio === "High") {
+            optHigh.setAttribute("selected", "");
+        } else if (task.prio === "Med") {
+            optMed.setAttribute("selected", "");
+        } else {
+            optLow.setAttribute("selected", "")
+        }
+        prio.appendChild(optHigh);
+        prio.appendChild(optMed);
+        prio.appendChild(optLow);
+        prio.addEventListener("input", (event) => {
+            task.prio = event.target.value;
+        })
+
+        descLabel.style.display = "none";
+        dueDateLabel.style.display = "none";
+        prioLabel.style.display = "none";
         showBtn.addEventListener("click", () => {
             if (showBtn.textContent === ">") {
                 showBtn.textContent = "<";
-                desc.style.display = "block";
-                dueDate.style.display = "block";
-                prio.style.display = "block";
+                descLabel.style.display = "block";
+                dueDateLabel.style.display = "block";
+                prioLabel.style.display = "block";
             } else {
                 showBtn.textContent = ">";
-                desc.style.display = "none";
-                dueDate.style.display = "none";
-                prio.style.display = "none";
+                descLabel.style.display = "none";
+                dueDateLabel.style.display = "none";
+                prioLabel.style.display = "none";
             }
         });
+
+        taskTitleLabel.appendChild(taskTitle);
+        descLabel.appendChild(desc);
+        dueDateLabel.appendChild(dueDate);
+        prioLabel.appendChild(prio);
         expandableTask.appendChild(showBtn);
-        expandableTask.appendChild(taskTitle);
-        expandableTask.appendChild(desc);
-        expandableTask.appendChild(dueDate);
-        expandableTask.appendChild(prio);
+        expandableTask.appendChild(taskTitleLabel);
+        expandableTask.appendChild(descLabel);
+        expandableTask.appendChild(dueDateLabel);
+        expandableTask.appendChild(prioLabel);
         domParent.appendChild(expandableTask);
     }
-}
 
-// function editTask(input) {
-//     input.addEventListener("input", (event) => {
-//         input.value = event.target.value;
-//     })
-// }
+}
 
 export function updateContent(project) {
     const content = document.querySelector(".content");
