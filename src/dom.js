@@ -71,6 +71,7 @@ function displayTasks(domParent, proj) {
         const showBtn = document.createElement("button");
         const taskTitle = document.createElement("input");
         const taskTitleLabel = document.createElement("label");
+        const details = document.createElement("div");
         const desc = document.createElement("input");
         const descLabel = document.createElement("label")
         const dueDate = document.createElement("input");
@@ -80,6 +81,7 @@ function displayTasks(domParent, proj) {
         const optHigh = document.createElement("option");
         const optMed = document.createElement("option");
         const optLow = document.createElement("option");
+        const delBtn = document.createElement("button");
 
         taskTitleLabel.textContent = "Task "
         taskTitle.value = task.title;
@@ -92,6 +94,7 @@ function displayTasks(domParent, proj) {
         })
 
         descLabel.textContent = "Description ";
+        descLabel.style.display = "block";
         desc.value = task.desc
         desc.addEventListener("change", (event) => {
             if (event.target.value.length > 0) {
@@ -100,6 +103,7 @@ function displayTasks(domParent, proj) {
         })
 
         dueDateLabel.textContent = "Due ";
+        dueDateLabel.style.display = "block";
         dueDate.setAttribute("type", "date");
         dueDate.value = task.dueDate;
         dueDate.addEventListener("input", (event) => {
@@ -108,6 +112,7 @@ function displayTasks(domParent, proj) {
         })
 
         prioLabel.textContent = "Priority ";
+        prioLabel.style.display = "block";
         optHigh.textContent = "High";
         optMed.textContent = "Med";
         optLow.textContent = "Low";
@@ -128,24 +133,27 @@ function displayTasks(domParent, proj) {
             task.prio = event.target.value;
         })
 
-        descLabel.style.display = "none";
-        dueDateLabel.style.display = "none";
-        prioLabel.style.display = "none";
-
+        details.style.display = "none";
         showBtn.textContent = "+";
         showBtn.classList.add("showBtn");
         showBtn.addEventListener("click", () => {
             if (showBtn.textContent === "+") {
                 showBtn.textContent = "-";
-                descLabel.style.display = "block";
-                dueDateLabel.style.display = "block";
-                prioLabel.style.display = "block";
+                details.style.display = "block";
             } else {
                 showBtn.textContent = "+";
-                descLabel.style.display = "none";
-                dueDateLabel.style.display = "none";
-                prioLabel.style.display = "none";
+                details.style.display = "none";
             }
+        });
+
+        delBtn.textContent = "Delete Task";
+        delBtn.addEventListener("click", () => {
+            for (let i = 0; i < proj.tasks.length; ++i) {
+                if (proj.tasks[i].id === task.id) {
+                    proj.tasks.splice(i, 1);
+                }
+            }
+            domParent.removeChild(expandableTask);
         });
 
         taskTitleLabel.appendChild(taskTitle);
@@ -154,12 +162,13 @@ function displayTasks(domParent, proj) {
         prioLabel.appendChild(prio);
         expandableTask.appendChild(taskTitleLabel);
         expandableTask.appendChild(showBtn);
-        expandableTask.appendChild(descLabel);
-        expandableTask.appendChild(dueDateLabel);
-        expandableTask.appendChild(prioLabel);
+        expandableTask.appendChild(delBtn);
+        details.appendChild(descLabel);
+        details.appendChild(dueDateLabel);
+        details.appendChild(prioLabel);
+        expandableTask.appendChild(details);
         domParent.appendChild(expandableTask);
     }
-
 }
 
 export function updateContent(project) {

@@ -28,6 +28,7 @@ class Task {
         this.desc = desc;
         this.dueDate = dueDate;
         this.prio = prio;
+        this.id = crypto.randomUUID();
     }
 }
 
