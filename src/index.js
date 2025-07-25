@@ -46,3 +46,4 @@ projectList.projects[2].addTask("Lock in", "Do some work", "2025-07-22", "High")
 projectList.projects[2].addTask("Lock in", "Do some work", "2025-07-22", "High");
 
 dom.updateSidebar(projectList);
+dom.showAll(projectList);

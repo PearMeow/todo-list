@@ -1,5 +1,3 @@
-import { format } from "date-fns";
-
 export function updateSidebar(projectList) {
     const sidebar = document.querySelector(".sidebar");
     const domProjects = document.createElement("div");
@@ -51,7 +49,7 @@ function createAddProjDialog(projectList) {
     return addDialog;
 }
 
-function showAll(projectList) {
+export function showAll(projectList) {
     const content = document.querySelector(".content");
     const newContent = document.createElement("div");
     for (const proj of projectList.projects) {

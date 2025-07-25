@@ -10,7 +10,6 @@ Features
 - [x] Tasks that display under titles
 - [x] Tasks that contain title, description, due date, and priority
 - [x] Expand tasks upon clicking for more information
-- [x] Date library date-fns for date formatting
 - [x] Ability to edit tasks on the page
 - [x] Ability to add tasks on the page
 - [x] Ability to delete tasks on the page
