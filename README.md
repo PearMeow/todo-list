@@ -12,14 +12,14 @@ Features
 - [x] Expand tasks upon clicking for more information
 - [x] Date library date-fns for date formatting
 - [x] Ability to edit tasks on the page
-- [ ] Ability to add tasks on the page
-- [ ] Ability to delete tasks on the page
-- [ ] CSS to make the page look good
-- [ ] Sorting by due date
-- [ ] Sorting by priority
+- [x] Ability to add tasks on the page
+- [x] Ability to delete tasks on the page
 - [ ] Checkboxes for tasks
 - [ ] localStorage to save data on a computer
 - [ ] Error handling if data isn't in localStorage
+- [ ] CSS to make the page look good
+- ~~[ ] Sorting by due date~~
+- ~~[ ] Sorting by priority~~
 
 How to use this project
 -----------------------
