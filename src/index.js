@@ -37,11 +37,11 @@ projectList.addProject("Chores");
 projectList.addProject("Homework");
 projectList.addProject("Projects");
 
-projectList.projects[0].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
-projectList.projects[1].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
-projectList.projects[1].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
-projectList.projects[2].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
-projectList.projects[2].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
-projectList.projects[2].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "high");
+projectList.projects[0].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "High");
+projectList.projects[1].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "High");
+projectList.projects[1].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "High");
+projectList.projects[2].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "High");
+projectList.projects[2].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "High");
+projectList.projects[2].addTask("Lock in", "Do some work", new Date(2025, 7, 22), "High");
 
 dom.updateSidebar(projectList);

@@ -70,21 +70,30 @@ function addTasks(domParent, proj) {
         const expandableTask = document.createElement("div");
         const showBtn = document.createElement("button");
         const taskTitle = document.createElement("p");
-        const details = document.createElement("p");
+        const desc = document.createElement("p");
+        const dueDate = document.createElement("p");
+        const prio = document.createElement("p");
+
         showBtn.textContent = ">";
         showBtn.classList.add("showBtn");
         taskTitle.classList.add("taskTitle");
+        taskTitle.textContent = task.title;
+        desc.textContent = task.desc
+        dueDate.textContent = "Due " + format(task.dueDate, "yyyy/MM/dd")
+        prio.textContent = task.prio + " priority";
         showBtn.addEventListener("click", () => {
             if (showBtn.textContent === ">") {
                 showBtn.textContent = "<";
-                expandableTask.appendChild(details);
+                expandableTask.appendChild(desc);
+                expandableTask.appendChild(dueDate);
+                expandableTask.appendChild(prio);
             } else {
                 showBtn.textContent = ">";
-                expandableTask.removeChild(details);
+                expandableTask.removeChild(desc);
+                expandableTask.removeChild(dueDate);
+                expandableTask.removeChild(prio);
             }
         });
-        taskTitle.textContent = task.title;
-        details.textContent = " Desc: " + task.desc + " Due: " + format(task.dueDate, "yyyy/MM/dd") + " Priority: " + task.prio;
         expandableTask.appendChild(showBtn);
         expandableTask.appendChild(taskTitle);
         domParent.appendChild(expandableTask);
