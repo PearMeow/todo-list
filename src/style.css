@@ -2,23 +2,56 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    font-size: 20px;
+    font-family: Roboto;
+}
+
+html {
+    height: 100vh;
 }
 
 body {
     display: grid;
-    grid-template-columns: 1fr 4fr;
-    gap: 20px;
+    grid-template-columns: 1fr 3fr;
+    margin: 0;
+    height: 100%;
 }
 
 p {
     margin: 0;
 }
 
+.sidebar {
+    padding: 0;
+    background-color: lightblue;
+}
+
 .sidebar>div {
     display: flex;
-    flex-direction: column;
     gap: 10px;
-    align-items: center;
+    flex-direction: column;
+}
+
+.sidebar>div>button {
+    border: 0;
+    color: darkblue;
+    background-color: lightblue;
+    padding: 15px;
+}
+
+.sidebar>div>button:hover {
+    color: royalblue;
+    cursor: pointer;
+}
+
+.sidebar>div>:nth-last-child(2) {
+    text-decoration: underline;
+}
+
+.addDialog>form {}
+
+.content {
+    padding: 10px;
 }
 
 .content>div {

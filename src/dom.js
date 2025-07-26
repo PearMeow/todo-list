@@ -3,7 +3,7 @@ export function updateSidebar(projectList) {
     const domProjects = document.createElement("div");
     const allBtn = document.createElement("button");
     const addBtn = document.createElement("button");
-    const addDialog = createAddProjDialog(projectList);
+    const addProjDialog = createAddProjDialog(projectList);
     allBtn.textContent = "All Projects";
     allBtn.addEventListener("click", () => showAll(projectList));
     domProjects.appendChild(allBtn);
@@ -13,40 +13,39 @@ export function updateSidebar(projectList) {
         projBtn.addEventListener("click", () => updateContent(proj));
         domProjects.appendChild(projBtn);
     }
-    addBtn.addEventListener("click", () => addDialog.showModal());
+    addBtn.addEventListener("click", () => addProjDialog.showModal());
     addBtn.textContent = "Add Project";
     domProjects.appendChild(addBtn);
-    domProjects.appendChild(addDialog);
+    domProjects.appendChild(addProjDialog);
     sidebar.replaceChildren();
     sidebar.appendChild(domProjects);
 }
 
 function createAddProjDialog(projectList) {
-    const addDialog = document.createElement("dialog");
+    const addProjDialog = document.createElement("dialog");
     const form = document.createElement("form");
     const inputLabel = document.createElement("label");
     const input = document.createElement("input");
     const submitBtn = document.createElement("button");
     form.setAttribute("action", "");
     form.setAttribute("method", "dialog");
-    form.addEventListener("submit", () => {
+    form.addEventListener("submit", (event) => {
         const data = new FormData(form);
         projectList.addProject(data.get("projName"));
         updateSidebar(projectList);
+        event.preventDefault();
     })
     input.setAttribute("name", "projName");
-    input.setAttribute("id", "projName");
     input.setAttribute("required", "");
-    inputLabel.setAttribute("for", "projName");
     inputLabel.textContent = "Project Name";
     submitBtn.textContent = "Add Project";
     submitBtn.setAttribute("type", "submit");
-    addDialog.classList.add("addDialog");
+    addProjDialog.classList.add("addProjDialog");
+    inputLabel.appendChild(input);
     form.appendChild(inputLabel);
-    form.appendChild(input);
     form.appendChild(submitBtn);
-    addDialog.appendChild(form);
-    return addDialog;
+    addProjDialog.appendChild(form);
+    return addProjDialog;
 }
 
 export function showAll(projectList) {
@@ -106,8 +105,9 @@ function taskToDomElem(task, taskList, proj) {
         task.completed = !task.completed;
     })
 
-    taskTitleLabel.textContent = "Task "
+    taskTitleLabel.textContent = "Task ";
     taskTitle.value = task.title;
+    taskTitle.setAttribute("name", "taskTitle");
     taskTitle.addEventListener("change", (event) => {
         if (event.target.value.length > 0) {
             task.title = event.target.value;
@@ -118,7 +118,8 @@ function taskToDomElem(task, taskList, proj) {
 
     descLabel.textContent = "Description ";
     descLabel.style.display = "block";
-    desc.value = task.desc
+    desc.value = task.desc;
+    desc.setAttribute("name", "desc");
     desc.addEventListener("change", (event) => {
         if (event.target.value.length > 0) {
             task.desc = event.target.value;
@@ -128,6 +129,7 @@ function taskToDomElem(task, taskList, proj) {
     dueDateLabel.textContent = "Due ";
     dueDateLabel.style.display = "block";
     dueDate.setAttribute("type", "date");
+    dueDate.setAttribute("name", "dueDate");
     dueDate.value = task.dueDate;
     dueDate.addEventListener("input", (event) => {
         task.dueDate = event.target.value;
@@ -147,8 +149,9 @@ function taskToDomElem(task, taskList, proj) {
     } else if (task.prio === "Med") {
         optMed.setAttribute("selected", "");
     } else {
-        optLow.setAttribute("selected", "")
+        optLow.setAttribute("selected", "");
     }
+    prio.setAttribute("name", "prio");
     prio.appendChild(optHigh);
     prio.appendChild(optMed);
     prio.appendChild(optLow);
