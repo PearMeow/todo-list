@@ -54,6 +54,7 @@ export function showAll(projectList) {
     for (const proj of projectList.projects) {
         const title = document.createElement("p");
         title.textContent = proj.name;
+        title.classList.add("projectTitle");
         newContent.appendChild(title);
         displayTasks(newContent, proj);
     }
@@ -63,6 +64,7 @@ export function showAll(projectList) {
 
 function displayTasks(domParent, proj) {
     const taskList = document.createElement("div");
+    taskList.classList.add("taskList");
     for (let i = 0; i < proj.tasks.length; ++i) {
         const expandableTask = taskToDomElem(proj.tasks[i], taskList, proj);
         taskList.appendChild(expandableTask);
@@ -117,7 +119,6 @@ function taskToDomElem(task, taskList, proj) {
     })
 
     descLabel.textContent = "Description ";
-    descLabel.style.display = "block";
     desc.value = task.desc;
     desc.setAttribute("name", "desc");
     desc.addEventListener("change", (event) => {
@@ -127,7 +128,6 @@ function taskToDomElem(task, taskList, proj) {
     })
 
     dueDateLabel.textContent = "Due ";
-    dueDateLabel.style.display = "block";
     dueDate.setAttribute("type", "date");
     dueDate.setAttribute("name", "dueDate");
     dueDate.value = task.dueDate;
@@ -137,7 +137,6 @@ function taskToDomElem(task, taskList, proj) {
     })
 
     prioLabel.textContent = "Priority ";
-    prioLabel.style.display = "block";
     optHigh.textContent = "High";
     optMed.textContent = "Med";
     optLow.textContent = "Low";
@@ -160,23 +159,26 @@ function taskToDomElem(task, taskList, proj) {
     })
 
     details.style.display = "none";
-    showBtn.textContent = "+";
+    details.classList.add("details");
+    showBtn.textContent = "Expand";
     showBtn.classList.add("showBtn");
     showBtn.addEventListener("click", () => {
-        if (showBtn.textContent === "+") {
-            showBtn.textContent = "-";
-            details.style.display = "block";
+        if (showBtn.textContent === "Expand") {
+            showBtn.textContent = "Collapse";
+            details.style.display = "flex";
         } else {
-            showBtn.textContent = "+";
+            showBtn.textContent = "Expand";
             details.style.display = "none";
         }
     });
 
-    delBtn.textContent = "Delete Task";
+    delBtn.textContent = "Delete";
     delBtn.addEventListener("click", () => {
         proj.removeTask(task.id);
         taskList.removeChild(expandableTask);
     });
+
+    expandableTask.classList.add("task");
 
     taskTitleLabel.appendChild(taskTitle);
     descLabel.appendChild(desc);
@@ -196,6 +198,7 @@ function taskToDomElem(task, taskList, proj) {
 function createAddTaskDialog(proj, taskList) {
     const addTaskDialog = document.createElement("dialog");
     const form = document.createElement("form");
+    addTaskDialog.classList.add("addTaskDialog");
     form.setAttribute("action", "");
     form.setAttribute("method", "dialog");
     form.addEventListener("submit", () => {
