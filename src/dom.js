@@ -37,7 +37,7 @@ function createAddProjDialog(projectList) {
     })
     input.setAttribute("name", "projName");
     input.setAttribute("required", "");
-    inputLabel.textContent = "Project Name";
+    inputLabel.textContent = "Project Name ";
     submitBtn.textContent = "Add Project";
     submitBtn.setAttribute("type", "submit");
     addProjDialog.classList.add("addProjDialog");
