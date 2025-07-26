@@ -270,6 +270,7 @@ export function updateContent(project) {
     const newContent = document.createElement("div");
     const title = document.createElement("p");
     title.textContent = project.name;
+    title.classList.add("projectTitle");
     newContent.appendChild(title);
     displayTasks(newContent, project);
     content.replaceChildren();

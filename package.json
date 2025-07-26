@@ -1,7 +1,7 @@
 {
   "name": "todo-list",
   "version": "1.0.0",
-  "description": "<h1 align=\"center\">Template</h1> Template for projects",
+  "description": "To do list",
   "main": "index.js",
   "scripts": {
     "build": "webpack --config webpack.prod.js",
