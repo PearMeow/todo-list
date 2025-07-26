@@ -21,6 +21,10 @@ p {
     margin: 0;
 }
 
+button {
+    cursor: pointer;
+}
+
 .sidebar * {
     font-size: 30px;
 }
@@ -45,7 +49,6 @@ p {
 
 .sidebar>div>button:hover {
     color: royalblue;
-    cursor: pointer;
 }
 
 .sidebar>div>:nth-last-child(2) {
@@ -68,7 +71,6 @@ p {
 }
 
 .addProjDialog>form>button:hover {
-    cursor: pointer;
     color: royalblue;
 }
 
