@@ -1,5 +1,5 @@
 import * as dom from "./dom.js";
-import "./style.css"
+import "./style.css";
 
 class ProjectList {
     constructor() {
@@ -31,7 +31,7 @@ class Project {
         }
         storage.setItem("projectList", JSON.stringify(projectList));
     }
-};
+}
 
 class Task {
     constructor(title, desc, dueDate, prio, completed = false, id = null) {
@@ -119,7 +119,14 @@ if (storage !== null && storage.getItem("projectList") !== null) {
         projectList.addProject(project.name);
         const currProj = projectList.projects[projectList.projects.length - 1];
         for (const task of project.tasks) {
-            currProj.addTask(task._title, task._desc, task._dueDate, task._prio, task._completed, task.id);
+            currProj.addTask(
+                task._title,
+                task._desc,
+                task._dueDate,
+                task._prio,
+                task._completed,
+                task.id,
+            );
         }
     }
 }

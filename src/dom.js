@@ -34,7 +34,7 @@ function createAddProjDialog(projectList) {
         projectList.addProject(data.get("projName"));
         updateSidebar(projectList);
         event.preventDefault();
-    })
+    });
     input.setAttribute("name", "projName");
     input.setAttribute("required", "");
     inputLabel.textContent = "Project Name ";
@@ -74,7 +74,7 @@ function displayTasks(domParent, proj) {
     addBtn.textContent = "Add Task";
     addBtn.addEventListener("click", () => {
         addTaskDialog.showModal();
-    })
+    });
     domParent.appendChild(taskList);
     domParent.appendChild(addBtn);
     domParent.appendChild(addTaskDialog);
@@ -88,7 +88,7 @@ function taskToDomElem(task, taskList, proj) {
     const showBtn = document.createElement("button");
     const details = document.createElement("div");
     const desc = document.createElement("input");
-    const descLabel = document.createElement("label")
+    const descLabel = document.createElement("label");
     const dueDate = document.createElement("input");
     const dueDateLabel = document.createElement("label");
     const prio = document.createElement("select");
@@ -105,7 +105,7 @@ function taskToDomElem(task, taskList, proj) {
     }
     checkbox.addEventListener("input", () => {
         task.completed = !task.completed;
-    })
+    });
 
     taskTitleLabel.textContent = "Task ";
     taskTitle.value = task.title;
@@ -116,7 +116,7 @@ function taskToDomElem(task, taskList, proj) {
         } else {
             taskTitle.value = task.title;
         }
-    })
+    });
 
     descLabel.textContent = "Description ";
     desc.value = task.desc;
@@ -125,7 +125,7 @@ function taskToDomElem(task, taskList, proj) {
         if (event.target.value.length > 0) {
             task.desc = event.target.value;
         }
-    })
+    });
 
     dueDateLabel.textContent = "Due ";
     dueDate.setAttribute("type", "date");
@@ -134,15 +134,15 @@ function taskToDomElem(task, taskList, proj) {
     dueDate.addEventListener("input", (event) => {
         task.dueDate = event.target.value;
         console.log(task.dueDate);
-    })
+    });
 
     prioLabel.textContent = "Priority ";
     optHigh.textContent = "High";
     optMed.textContent = "Med";
     optLow.textContent = "Low";
-    optHigh.setAttribute("value", "High")
-    optMed.setAttribute("value", "Med")
-    optLow.setAttribute("value", "Low")
+    optHigh.setAttribute("value", "High");
+    optMed.setAttribute("value", "Med");
+    optLow.setAttribute("value", "Low");
     if (task.prio === "High") {
         optHigh.setAttribute("selected", "");
     } else if (task.prio === "Med") {
@@ -156,7 +156,7 @@ function taskToDomElem(task, taskList, proj) {
     prio.appendChild(optLow);
     prio.addEventListener("input", (event) => {
         task.prio = event.target.value;
-    })
+    });
 
     details.style.display = "none";
     details.classList.add("details");
@@ -208,9 +208,13 @@ function createAddTaskDialog(proj, taskList) {
         const dueDate = data.get("dueDate");
         const prio = data.get("prio");
         proj.addTask(title, desc, dueDate, prio);
-        const expandableTask = taskToDomElem(proj.tasks[proj.tasks.length - 1], taskList, proj);
+        const expandableTask = taskToDomElem(
+            proj.tasks[proj.tasks.length - 1],
+            taskList,
+            proj,
+        );
         taskList.appendChild(expandableTask);
-    })
+    });
     const titleLabel = document.createElement("label");
     const titleInput = document.createElement("input");
     const descLabel = document.createElement("label");
@@ -242,9 +246,9 @@ function createAddTaskDialog(proj, taskList) {
     optHigh.textContent = "High";
     optMed.textContent = "Med";
     optLow.textContent = "Low";
-    optHigh.setAttribute("value", "High")
-    optMed.setAttribute("value", "Med")
-    optLow.setAttribute("value", "Low")
+    optHigh.setAttribute("value", "High");
+    optMed.setAttribute("value", "Med");
+    optLow.setAttribute("value", "Low");
 
     submitBtn.setAttribute("type", "submit");
     submitBtn.textContent = "Submit";
